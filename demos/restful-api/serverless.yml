@@ -1,0 +1,23 @@
+component: scf
+name: restfulApi
+
+inputs:
+  src: ./
+  name: restful-api
+  handler: index.main_handler
+  runtime: Nodejs12.16
+  events:
+    - apigw:
+        parameters:
+          serviceName: restful_api_service
+          environment: release
+          protocols:
+            - http
+            - https
+          endpoints:
+            - path: /
+              method: ANY
+              responseType: JSON
+              function:
+                isIntegratedResponse: true
+                functionQualifier: $DEFAULT
