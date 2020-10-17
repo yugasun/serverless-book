@@ -1,0 +1,34 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy serverless project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install serverless cli
+        run: |
+          cd demos/express-demo
+          npm i serverless -g
+
+      - name: Install dependecies
+        run: |
+          cd demos/express-demo
+          npm install
+
+      - name: Run deploy
+        run: |
+          cd demos/express-demo
+          serverless deploy --debug
+        env:
+          TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
+          TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
+          SERVERLESS_PLATFORM_VENDOR: tencent
+          GLOBAL_ACCELERATOR_NA: true

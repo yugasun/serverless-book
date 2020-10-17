@@ -1,0 +1,17 @@
+org: orgDemo
+app: express-demo
+stage: dev
+component: express
+name: expressDemo
+inputs:
+  src:
+    src: ./
+    exclude:
+      - .env
+  region: ap-guangzhou
+  runtime: Nodejs10.15
+  apigatewayConf:
+    protocols:
+      - http
+      - https
+    environment: release

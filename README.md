@@ -5,6 +5,8 @@
 ## 案例列表
 
 1. [RESTful API](./demos/restful-api)
+2. [Github Actions Demo](./demos/github-actions-demo)
+3. [Serverless Express Demo](./demos/express-demo)
 
 ## License
 
