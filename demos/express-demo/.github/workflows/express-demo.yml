@@ -13,17 +13,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+          registry-url: https://registry.npmjs.org
+
       - name: Install serverless cli
-        run: |
-          npm i serverless -g
+        run: npm i serverless -g
 
       - name: Install dependecies
-        run: |
-          npm install
+        run: npm install
+
+      - name: Run integration tests
+        run: npm run test
 
       - name: Run deploy
-        run: |
-          serverless deploy --debug
+        run: serverless deploy --debug
         env:
           TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
           TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}

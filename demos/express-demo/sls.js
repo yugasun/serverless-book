@@ -7,7 +7,7 @@ app.get(`/`, (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'))
 })
 
-app.get('/user', (req, res) => {
+app.get('/post', (req, res) => {
   res.send([
     {
       title: 'serverless framework',
@@ -16,7 +16,7 @@ app.get('/user', (req, res) => {
   ])
 })
 
-app.get('/user/:id', (req, res) => {
+app.get('/post/:id', (req, res) => {
   const id = req.params.id
   res.send({
     id: id,
@@ -25,20 +25,10 @@ app.get('/user/:id', (req, res) => {
   })
 })
 
-app.get('/404', (req, res) => {
-  res.status(404).send('Not found')
-})
-
-app.get('/500', (req, res) => {
-  res.status(500).send('Server Error')
-})
-
 // Error handler
 app.use(function(err, req, res, next) {
   console.error(err)
   res.status(500).send('Internal Serverless Error')
 })
-
-app.listen(8080)
 
 module.exports = app

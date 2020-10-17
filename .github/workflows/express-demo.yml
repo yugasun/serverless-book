@@ -29,6 +29,11 @@ jobs:
           cd demos/express-demo
           npm install
 
+      - name: Run integration tests
+        run: |
+          cd demos/express-demo
+          npm run test
+
       - name: Run deploy
         run: |
           cd demos/express-demo
